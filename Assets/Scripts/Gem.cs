@@ -131,11 +131,53 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
     // call m_grid.Swap()
     public void OnDrag(PointerEventData eventData)
     {
+
+        if (m_isDragging)
+        {
+            return;
+        }
+
         m_dragDelta += eventData.delta;
 
-        if (m_dragDelta.x > s_swipeDist || m_dragDelta.y > s_swipeDist)
+        int swap_x = m_x;
+        int swap_y = m_y;
+        
+        if (Mathf.Abs(m_dragDelta.x) >= s_swipeDist || Mathf.Abs(m_dragDelta.y) >= s_swipeDist)
         {
-            m_grid.Swap(m_x, m_y, m_x + 1, m_y + 1);
+            // horizontal
+            if (Mathf.Abs(m_dragDelta.x) > Mathf.Abs(m_dragDelta.y))
+            {
+                if (Mathf.Abs(m_dragDelta.x) > 0)
+                {
+                    // swipe right
+                    swap_x = m_x + 1;
+                    Debug.Log("swipe right");
+                }
+                
+                else
+                {   // swipe left
+                    swap_x = m_x - 1;
+                    Debug.Log("Swipe left");
+                }
+            }
+
+            // vertical
+            else
+            {
+                if (Mathf.Abs(m_dragDelta.y) > 0)
+                {
+                    // swipe up 
+                    swap_y = m_y + 1;
+                    Debug.Log("Swipe up");
+                }
+                else
+                {   // swipe down
+                    swap_y = m_y - 1;
+                    Debug.Log("Swipe down");
+                }
+            }
+
+            m_grid.Swap(m_x, m_y, swap_x, swap_y);
             m_anim.SetBool("Touched", false);
             m_isDragging = true;
         }
