@@ -120,7 +120,7 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
     // Set m_isDragging true
     // Reset m_dragDelta to zero
 
-    public void OnBeingDrag(PointerEventData eventData)
+    public void OnBeginDrag (PointerEventData eventData)
     {
         m_dragDelta = Vector2.zero;
     }
