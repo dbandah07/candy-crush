@@ -167,12 +167,12 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
                 if ((m_dragDelta.y) > 0)
                 {
                     // swipe up 
-                    swap_y = m_y + 1;
+                    swap_y = m_y - 1;
                     Debug.Log("Swipe up");
                 }
                 else
                 {   // swipe down
-                    swap_y = m_y - 1;
+                    swap_y = m_y + 1;
                     Debug.Log("Swipe down");
                 }
             }
