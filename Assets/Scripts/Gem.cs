@@ -147,7 +147,7 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
             // horizontal
             if (Mathf.Abs(m_dragDelta.x) > Mathf.Abs(m_dragDelta.y))
             {
-                if (Mathf.Abs(m_dragDelta.x) > 0)
+                if ((m_dragDelta.x) > 0)
                 {
                     // swipe right
                     swap_x = m_x + 1;
@@ -164,7 +164,7 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
             // vertical
             else
             {
-                if (Mathf.Abs(m_dragDelta.y) > 0)
+                if ((m_dragDelta.y) > 0)
                 {
                     // swipe up 
                     swap_y = m_y + 1;
