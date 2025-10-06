@@ -71,10 +71,71 @@ public class GemGrid : MonoBehaviour
 
         {   // TODO
             // check for matches of 3 or more gems in the vertical direction
+            for (int x = 0; x < m_grid.GetLength(0); x++) {
+                for (int y = 0; y < m_grid.GetLength(1); y++)
+                {
+                    Gem currGem = m_grid[x, y];
+
+                    int x_check = x + 1;
+
+                    List<Gem> horiz_matches = new List<Gem> { currGem };
+                    // same as Add.(currGem);
+
+                    // horizontal
+                    while (x_check < m_grid.GetLength(0) && m_grid[x_check, y] != null && m_grid[x_check, y].m_gemType == currGem.m_gemType)
+                    {
+                        horiz_matches.Add(m_grid[x_check, y]);
+                        x_check++;
+                    }
+
+                    if (horiz_matches.Count >= 3)
+                    {
+                        foreach (Gem g in horiz_matches)
+                        {
+                            breakGems.Add(g);
+                        }
+                    }
+
+                    // vertical 
+
+                    List<Gem> vert_matches = new List<Gem> { currGem };
+                    int y_check = y + 1;
+
+                    while (y_check <  m_grid.GetLength(1) && m_grid[x, y_check] != null && m_grid[x, y_check].m_gemType == currGem.m_gemType)
+                    {
+                        vert_matches.Add(m_grid[x, y_check]);
+                        y_check++;
+                    }
+
+                    if (vert_matches.Count >= 3) { 
+                       foreach (Gem g in vert_matches)
+                        {
+                            breakGems.Add(g);
+                        }
+
+                    }
+                    
+                }
+            }
+
+            // test
+            // breakGems.Add(m_grid[5,5]);
+
             // check for matches of 3 or more gems in the horizontal direction
         }
 
         {   // TODO call BreakGem() on all the gems in your list of gems to break
+
+            if (breakGems.Count > 0)
+            {
+                foreach (Gem gem in breakGems)
+                {
+                    gem.BreakGem();
+                }
+
+                Instantiate(m_gemPopSound);
+                return true;
+            }
             // If there are any, play the gem popping sound
             // If any gems broke, return true to indicate we need to re-enter the "falling" stage
         }
