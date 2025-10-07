@@ -153,13 +153,13 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
                 {
                     // swipe right
                     swap_x = m_x + 1;
-                    Debug.Log("swipe right");
+                 // Debug.Log("swipe right");
                 }
                 
                 else
                 {   // swipe left
                     swap_x = m_x - 1;
-                    Debug.Log("Swipe left");
+                 // Debug.Log("Swipe left");
                 }
             }
 
@@ -170,12 +170,12 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
                 {
                     // swipe up 
                     swap_y = m_y - 1;
-                    Debug.Log("Swipe up");
+                 // Debug.Log("Swipe up");
                 }
                 else
                 {   // swipe down
                     swap_y = m_y + 1;
-                    Debug.Log("Swipe down");
+                 // Debug.Log("Swipe down");
                 }
             }
 

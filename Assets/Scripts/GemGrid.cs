@@ -131,7 +131,31 @@ public class GemGrid : MonoBehaviour
                         }
 
                     }
-                    
+
+
+
+                    // check 2x2 square
+                    if (x < m_grid.GetLength(0) - 1 && y < m_grid.GetLength(1) - 1)
+                    {
+                        Gem right = m_grid[x + 1, y];
+                        Gem up = m_grid[x, y + 1];
+                        Gem upR = m_grid[x + 1, y + 1];
+
+                        if (right != null && up != null && upR != null)
+                        {
+                            if (currGem.m_gemType == right.m_gemType &&
+                                currGem.m_gemType == up.m_gemType &&
+                                currGem.m_gemType == upR.m_gemType )
+                            {
+                                breakGems.Add(currGem);
+                                breakGems.Add(right);
+                                breakGems.Add(up);
+                                breakGems.Add(upR);
+                            }
+                        }
+                    }
+
+
                 }
             }
 
