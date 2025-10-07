@@ -13,11 +13,18 @@ public class GemGrid : MonoBehaviour
     public float m_gridSize = 50.0f;
     public GameObject m_gemPopSound;
     public GameObject m_pauseMenu;
+    public GameObject gameOverTXT;
 
     Gem[,] m_grid;
     float[] m_yOffset;
     bool m_isAnimating = true;
     bool m_isPaused = false;
+
+    // moves:
+    private int m_moves = 10;
+    public TextMeshProUGUI movesTXT;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +32,16 @@ public class GemGrid : MonoBehaviour
         m_grid = new Gem[m_width, m_height];
         m_yOffset = new float[m_width];
         SetPause(false);
+        gameOverTXT.SetActive(false);
         FillGrid();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // added:
+
         for (int i = 0; i < m_width; ++i)
         {
             m_yOffset[i] = 0.0f;
@@ -219,15 +230,36 @@ public class GemGrid : MonoBehaviour
     public void GameOver()
     {
         {   // TODO change this to kick-off a coroutine
+            StartCoroutine(GameOverCoroutine());
             // Unhide the "Game Over" text
             // Delay 2 seconds
             // Then load the scene in the coroutine
-            SceneManager.LoadScene("Game");
         }
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private IEnumerator GameOverCoroutine()
+    {
+        // coroutine
+        gameOverTXT.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Game");
+
+    }
+
+    public void onGemSwipe()
+    {
+        m_moves--;
+
+        movesTXT.text = "Moves " + m_moves;
+
+        if (m_moves == 0)
+        {
+            GameOver();
+        }
     }
 }

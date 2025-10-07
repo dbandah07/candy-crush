@@ -15,6 +15,7 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
     public float m_gravity = 10.0f;
     public float m_maxSpeed = 100.0f;
 
+
     GemGrid m_grid;
     int m_x, m_y;
     Vector2 m_targetPos;
@@ -144,6 +145,7 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
         
         if (Mathf.Abs(m_dragDelta.x) >= s_swipeDist || Mathf.Abs(m_dragDelta.y) >= s_swipeDist)
         {
+
             // horizontal
             if (Mathf.Abs(m_dragDelta.x) > Mathf.Abs(m_dragDelta.y))
             {
@@ -180,6 +182,7 @@ public class Gem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegin
             m_grid.Swap(m_x, m_y, swap_x, swap_y);
             m_anim.SetBool("Touched", false);
             m_isDragging = true;
+            m_grid.onGemSwipe();
         }
     }
 
