@@ -29,7 +29,7 @@ public class GemGrid : MonoBehaviour
     public GameObject fxRayRed;
     public GameObject fxRayGreen;
     public GameObject fxRayOrange;
-
+    public GameObject fxRayYellow;
 
 
     // Start is called before the first frame update
@@ -284,6 +284,10 @@ public class GemGrid : MonoBehaviour
         else if (color == "green")
         {
             prefab = fxRayGreen;
+        }
+        else if (color == "yellow")
+        {
+            prefab = fxRayYellow;
         }
         else if (color == "orange")
         {
