@@ -24,6 +24,12 @@ public class GemGrid : MonoBehaviour
     private int m_moves = 10;
     public TextMeshProUGUI movesTXT;
 
+    // art choose ur own:
+    public GameObject fxRayBlue;
+    public GameObject fxRayRed;
+    public GameObject fxRayGreen;
+    public GameObject fxRayOrange;
+
 
 
     // Start is called before the first frame update
@@ -260,6 +266,40 @@ public class GemGrid : MonoBehaviour
         if (m_moves == 0)
         {
             GameOver();
+        }
+    }
+
+    public void rayEffect (Vector3 pos, bool isHorizontal, string color) 
+    {
+        GameObject prefab = null;
+
+        if (color == "blue")
+        {
+            prefab = fxRayBlue;
+        }
+        else if (color == "red")
+        {
+            prefab = fxRayRed;
+        }
+        else if (color == "green")
+        {
+            prefab = fxRayGreen;
+        }
+        else if (color == "orange")
+        {
+            prefab = fxRayOrange;
+        }
+
+        if (prefab != null)
+        {
+            // no rotation ->
+            GameObject effect = Instantiate(prefab, pos, Quaternion.identity);
+            
+            if (isHorizontal)
+            {
+                // rotate 
+                effect.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+            }
         }
     }
 }
